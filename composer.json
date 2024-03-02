@@ -1,0 +1,35 @@
+{
+    "name": "aee/user-module",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "Alp Emre Elmas",
+            "email": "elmasalpemre@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\User\\": "",
+            "Modules\\User\\App\\": "app/",
+            "Modules\\User\\Database\\Factories\\": "database/factories/",
+            "Modules\\User\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\User\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "spatie/laravel-permission": "^6.3"
+    }
+}
