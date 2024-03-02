@@ -1,6 +1,6 @@
 {
     "name": "aee/user-module",
-    "description": "",
+    "description": "This is official user module developed for larabase by Alp Emre Elmas.",
     "type": "laravel-module",
     "authors": [
         {
@@ -8,6 +8,8 @@
             "email": "elmasalpemre@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
+    "license": "MIT",
     "extra": {
         "laravel": {
             "providers": [],
