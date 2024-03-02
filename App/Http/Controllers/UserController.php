@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
         $user->assignRole($request->roles);
-        return to_route("user::users.index")->with("success","Successfully created.");
+        return to_route("user-management.users.index")->with("success","Successfully created.");
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller
         }
         $user->save();
         $user->syncRoles($request->roles);
-        return to_route("user::users.index")->with("success","Successfully updated.");
+        return to_route("user-management.users.index")->with("success","Successfully updated.");
     }
 
     /**
