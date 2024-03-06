@@ -25,14 +25,13 @@ Route::get('/dashboard', function () {
     return view('user::dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group([],function (){
+Route::group([], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','verified'])->prefix("user-management/")->as("user-management.")->group(function () {
-
+Route::middleware(['auth', 'verified'])->prefix("user-management/")->as("user-management.")->group(function () {
 
 
     Route::prefix("users")->as("users.")->controller(UserController::class)->group(function () {
@@ -98,15 +97,11 @@ Route::middleware(['auth','verified'])->prefix("user-management/")->as("user-man
             Route::put("/{role}", "update")->name("update");
         });
 
-        /*            Route::middleware("can:user_delete")->group(function () {
-                        Route::delete("/{user}", "destroy")->name("delete");
-                        Route::post("/{id}/restore", "restore")->name("restore");
-                    });
-
-                    Route::post("/{id}/force-delete", "forceDelete")
-                        ->name("forceDelete")->middleware("can:users_force_delete");*/
+        Route::middleware("can:user_delete")->group(function () {
+            Route::delete("/{role}", "destroy")->name("delete");
+        });
 
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -29,7 +29,7 @@ class RoleController extends Controller
     {
         $role = Role::create($request->validated());
         $role->syncPermissions($request->only("permissions")["permissions"]);
-        return to_route("user::roles.index");
+        return to_route("user-management.roles.index")->with("success","Role has been created.");
     }
 
     public function edit(Role $role)
@@ -43,6 +43,15 @@ class RoleController extends Controller
         /* TODO : check if you can make this more efficient */
         $role->update($request->validated());
         $role->syncPermissions($request->only("permissions")["permissions"]);
-        return to_route("user::roles.index");
+        return to_route("user-management.roles.index");
+    }
+
+    public function destroy(Request $request, Role $role)
+    {
+        if($role->users->count() > 0){
+            return redirect()->back()->withErrors("This role is in use. Before remove role, please detach role from the users.");
+        }
+        $role->delete();
+        return to_route("user-management.roles.index")->with("success","Role has been removed");
     }
 }

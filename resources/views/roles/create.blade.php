@@ -20,7 +20,7 @@
                                 </label>
                                 <select multiple class="form-control select2multiple" required id="exampleFormControlSelect2" name="permissions[]">
                                     @foreach($permissions as $permission)
-                                        <option value="{{$permission->id}}" >{{$permission->name}}</option>
+                                        <option value="{{$permission->name}}" >{{$permission->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

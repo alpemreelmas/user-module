@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card d-flex flex-column">
             <div class="d-flex justify-content-between">
-                @can(auth()->user()->can("user_create"))
+                @can("user_create")
                     <a class="btn btn-primary my-3 w-auto d-flex justify-content-center align-items-center"
                        style="max-width: 200px" title="Add user" href="{{route("user-management.users.create")}}">
                         <span>Add user</span>

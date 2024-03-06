@@ -2,6 +2,7 @@
 
 namespace Modules\User\Database\Seeders;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Modules\User\App\Models\User;
 use Spatie\Permission\Models\Permission;
@@ -16,19 +17,7 @@ class SeedUserRoleAndPermissionSeeder extends Seeder
     {
 
         /* User's permissions list */
-        Permission::create(["name"=>"user_create"]);
-        Permission::create(["name"=>"user_update"]);
-        Permission::create(["name"=>"user_access"]);
-        Permission::create(["name"=>"user_delete"]);
-        Permission::create(["name"=>"user_force_delete"]);
-
-        $superAdminRole = Role::create(["name"=>"Super Admin","guard_name"=>"web"]);
-
-        $permissions = Permission::all();
-
-        foreach ($permissions as $permission){
-            $superAdminRole->givePermissionTo($permission);
-        }
+        self::createPermissions();
 
         /*$this->call(PermissionAndRoleSeeder::class);*/
 
@@ -38,5 +27,21 @@ class SeedUserRoleAndPermissionSeeder extends Seeder
         ]);
 
         $superAdmin->assignRole("Super Admin");
+    }
+
+    public static function createPermissions(): void
+    {
+        Permission::create(["name"=>"user_create"]);
+        Permission::create(["name"=>"user_update"]);
+        Permission::create(["name"=>"user_access"]);
+        Permission::create(["name"=>"user_delete"]);
+        Permission::create(["name"=>"user_force_delete"]);
+
+        $role = Role::create(["name"=>"Super Admin","guard_name"=>"web"]);
+        $permissions = Permission::all();
+
+        foreach ($permissions as $permission){
+            $role->givePermissionTo($permission);
+        }
     }
 }

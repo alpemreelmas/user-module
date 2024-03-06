@@ -21,7 +21,7 @@
                             </label>
                             <select multiple class="form-control select2multiple" required id="exampleFormControlSelect2" name="permissions[]">
                                 @foreach($permissions as $permission)
-                                    <option value="{{$permission->id}}" @if(in_array($permission->name,$role->permissions    ->pluck("name")->toArray())) selected @endif >{{$permission->name}}</option>
+                                    <option value="{{$permission->name}}" @if(in_array($permission->name,$role->permissions->pluck("name")->toArray())) selected @endif >{{$permission->name}}</option>
                                 @endforeach
                             </select>
                         </div>
